@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import style from './main.modules.css';
+import style from './main.module.css';
 
 export default function Main() {
+    const [imgUrl, setImgUrl] = useState('');
+
     return (
         <div className={style.mainContainer}>
-            <div>hi</div>
+            <div className={style.mainWrapper}>
+                <h1>Create Your Image</h1>
+            </div>
         </div>
     )
 }
