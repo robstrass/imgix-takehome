@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import style from './form.module.css';
 
-export default function Form({ setParameters }) {
+export default function Form({ setParameters, setImgDisplay }) {
     const [imgUrl, setImgUrl] = useState('');
     const [imgText, setImgText] = useState('');
     const [imgBlend, setImgBlend] = useState('');
@@ -10,10 +10,59 @@ export default function Form({ setParameters }) {
     const [width, setWidth] = useState('');
     const [textColor, setTextColor] = useState('');
     const [textSize, setTextSize] = useState('');
+    const [errors, setErrors] = useState([]);
+
+    const validate = () => {
+        const validators = [];
+
+        if (!imgUrl) validators.push('Please include an image URL');
+        if (imgText.length > 50) validators.push('Image text cannot exceed 50 characters');
+        if (imgBlend.length > 6 || imgBlend.length < 6) validators.push('Please input a valid hex code for overlay color (i.e. FF5733)');
+        if (textColor.length > 6 || textColor.length < 6) validators.push('Please input a valid hex code for text color (i.e. FF5733)');
+
+        return validators;
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const errors = validate();
+
+        if (errors.length > 0) {
+            return setErrors(errors);
+        }
+
+        setParameters({
+            imgUrl,
+            txt: imgText,
+            blend: imgBlend,
+            w: width,
+            h: height,
+            txtclr: textColor,
+            txtsize: textSize
+        });
+        setImgDisplay(true);
+        setErrors([]);
+    }
 
     return (
         <>
-            <form className={style.mainForm}>
+            {errors && (
+                <ul className={style.mainFormErrors}>
+                    {errors.map((error, idx) => (
+                        <li
+                            className={style.mainFormError}
+                            key={idx}
+                        >
+                            {error}
+                        </li>
+                    ))}
+                </ul>
+            )}
+            <form
+                className={style.mainForm}
+                onSubmit={handleSubmit}
+            >
                 <div className={style.mainInputWrapper}>
                     <label
                         className={style.mainLabel}
@@ -26,6 +75,7 @@ export default function Form({ setParameters }) {
                         id='imgLink'
                         placeholder='i.e. https://assets.imgix.net/examples/butterfly.jpg'
                         value={imgUrl}
+                        accept='.jpg, .jpeg, .png, .gif, .svg'
                         type='url'
                         onChange={e => setImgUrl(e.target.value)}
                     />

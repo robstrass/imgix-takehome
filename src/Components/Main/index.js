@@ -6,6 +6,7 @@ import style from './main.module.css';
 
 export default function Main() {
     const [parameters, setParameters] = useState({});
+    const [imgDisplay, setImgDisplay] = useState(false);
 
     const [imgUrl, setImgUrl] = useState('');
     const [imgText, setImgText] = useState('');
@@ -23,6 +24,7 @@ export default function Main() {
                 </h1>
                 <Form
                     setParameters={setParameters}
+                    setImgDisplay={setImgDisplay}
                     imgUrl={imgUrl}
                     setImgUrl={setImgUrl}
                     imgText={imgText}
