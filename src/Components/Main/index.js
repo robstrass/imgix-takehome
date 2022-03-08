@@ -16,7 +16,6 @@ export default function Main() {
     useEffect(() => {
         if (parameters !== {}) {
             setFinalUrl(encode(parameters, imgUrl));
-            console.log('final', finalUrl)
         }
     }, [parameters]);
 
