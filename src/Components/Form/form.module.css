@@ -1,0 +1,40 @@
+.mainForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 80%;
+    align-items: center;
+    /* background-color: aqua; */
+}
+
+.mainInputWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: .25rem;
+}
+
+.mainLabel {
+    font-size: 1rem;
+}
+
+.mainInput {
+    padding: .5rem .5rem;
+    font-size: 1.25rem;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+.mainInput:focus {
+    outline: none;
+}
+
+.mainButton {
+    width: 6rem;
+    height: 3rem;
+    border-radius: 6px;
+    border: none;
+    background-color: rgb(5,191,254);
+    color: white;
+    font-size: 1rem;
+}
