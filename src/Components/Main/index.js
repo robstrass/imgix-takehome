@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Form from '../Form'
+import { encode } from '../../utils'
 
 import style from './main.module.css';
 
 export default function Main() {
     const [parameters, setParameters] = useState({});
+    const [imgUrl, setImgUrl] = useState('');
     const [imgDisplay, setImgDisplay] = useState(false);
 
-    const [imgUrl, setImgUrl] = useState('');
-    const [imgText, setImgText] = useState('');
-    const [imgBlend, setImgBlend] = useState('');
-    const [height, setHeight] = useState('');
-    const [width, setWidth] = useState('');
-    const [textColor, setTextColor] = useState('');
-    const [textsize, setTextSize] = useState('');
+
+
+    useEffect(() => {
+        console.log(encode(parameters, imgUrl));
+    }, [parameters]);
 
     return (
         <div className={style.mainContainer}>
@@ -24,21 +24,9 @@ export default function Main() {
                 </h1>
                 <Form
                     setParameters={setParameters}
-                    setImgDisplay={setImgDisplay}
                     imgUrl={imgUrl}
                     setImgUrl={setImgUrl}
-                    imgText={imgText}
-                    setImgText={setImgText}
-                    imgBlend={imgBlend}
-                    setImgBlend={setImgBlend}
-                    height={height}
-                    setHeight={setHeight}
-                    width={width}
-                    setWidth={setWidth}
-                    textColor={textColor}
-                    setTextColor={setTextColor}
-                    textsize={textsize}
-                    setTextSize={setTextSize}
+                    setImgDisplay={setImgDisplay}
                 />
             </div>
         </div>

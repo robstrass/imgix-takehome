@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 
 import style from './form.module.css';
 
-export default function Form({ setParameters, setImgDisplay }) {
-    const [imgUrl, setImgUrl] = useState('');
+export default function Form({ setParameters, imgUrl, setImgUrl, setImgDisplay }) {
     const [imgText, setImgText] = useState('');
     const [imgBlend, setImgBlend] = useState('');
     const [height, setHeight] = useState('');
@@ -33,7 +32,6 @@ export default function Form({ setParameters, setImgDisplay }) {
         }
 
         setParameters({
-            imgUrl,
             txt: imgText,
             blend: imgBlend,
             w: width,
