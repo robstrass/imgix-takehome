@@ -13,9 +13,10 @@
     color: rgb(248,82,14);
 }
 
-.displayImg {
-    overflow-x: auto !important;
-    overflow-y: auto !important;
+.displayImgHolder {
+    width: 90vw;
+    height: 90vh;
+    overflow: scroll;
 }
 
 .displayUrlWrapper {
@@ -31,7 +32,10 @@
 }
 
 .displayUrl {
-    border-bottom: 1px solid black;
-    user-select: all;
     padding: 1rem;
+    text-align: center;
+}
+
+.displayUrl > a {
+    color: rgb(248,82,14);
 }

@@ -4,6 +4,8 @@ import style from './form.module.css';
 
 export default function Form({ setParameters, imgUrl, setImgUrl, setImgDisplay }) {
     const [imgText, setImgText] = useState('');
+    const [textAlignHorizantal, setTextAlignHorizantal] = useState('');
+    const [textAlignVertical, setTextAlignVertical] = useState('');
     const [imgBlend, setImgBlend] = useState('');
     const [height, setHeight] = useState('');
     const [width, setWidth] = useState('');
@@ -26,6 +28,7 @@ export default function Form({ setParameters, imgUrl, setImgUrl, setImgDisplay }
         e.preventDefault();
 
         const errors = validate();
+        const alignment = `${textAlignHorizantal} ${textAlignVertical}`;
 
         if (errors.length > 0) {
             return setErrors(errors);
@@ -37,7 +40,8 @@ export default function Form({ setParameters, imgUrl, setImgUrl, setImgDisplay }
             w: width,
             h: height,
             txtclr: textColor,
-            txtsize: textSize
+            txtsize: textSize,
+            txtalign: alignment
         });
         setImgDisplay(true);
         setErrors([]);
@@ -143,6 +147,44 @@ export default function Form({ setParameters, imgUrl, setImgUrl, setImgDisplay }
                         type='text'
                         onChange={e => setImgText(e.target.value)}
                     />
+                </div>
+                <div className={style.mainInputWrapper}>
+                    <label
+                        className={style.mainLabel}
+                        htmlFor='textAlignHorizantal'
+                    >
+                        Horizantal Text Alignment
+                    </label>
+                    <select
+                        className={style.mainInput}
+                        id='textAlignHorizantal'
+                        name='textAlignHorizantal'
+                        onChange={e => setTextAlignHorizantal(e.target.value)}
+                    >
+                        <option value='unset'>Default</option>
+                        <option value='center'>Center</option>
+                        <option value='left'>Left</option>
+                        <option value='right'>Right</option>
+                    </select>
+                </div>
+                <div className={style.mainInputWrapper}>
+                    <label
+                        className={style.mainLabel}
+                        htmlFor='textAlignVertical'
+                    >
+                        Vertical Text Alignment
+                    </label>
+                    <select
+                        className={style.mainInput}
+                        id='textAlignVertical'
+                        name='textAlignVertical'
+                        onChange={e => setTextAlignVertical(e.target.value)}
+                    >
+                        <option value='unset'>Default</option>
+                        <option value='top'>Top</option>
+                        <option value='middle'>Middle</option>
+                        <option value='bottom'>Bottom</option>
+                    </select>
                 </div>
                 <div className={style.mainInputWrapper}>
                     <label

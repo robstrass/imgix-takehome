@@ -11,14 +11,20 @@ export default function DisplayImage({ finalUrl }) {
                     Your New Image URL:
                 </p>
                 <p className={style.displayUrl}>
-                    {finalUrl}
+                    <a
+                        href={finalUrl}
+                        target='_blank'
+                        rel='noreferrer'
+                    >{finalUrl}</a>
                 </p>
             </div>
-            <img
-                className={style.displayImg}
-                src={finalUrl}
-                alt='Your new image'
-            />
+            <div className={style.displayImgHolder}>
+                <img
+                    className={style.displayImg}
+                    src={finalUrl}
+                    alt='Your new image'
+                />
+            </div>
         </div>
     )
 }
