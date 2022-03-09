@@ -18,8 +18,13 @@ export default function Form({ setParameters, imgUrl, setImgUrl, setImgDisplay }
 
         if (!imgUrl) validators.push('Please include an image URL');
         if (imgText.length > 50) validators.push('Image text cannot exceed 50 characters');
-        if (imgBlend.length > 6 || imgBlend.length < 6) validators.push('Please input a valid hex code for overlay color (i.e. FF5733)');
-        if (textColor.length > 6 || textColor.length < 6) validators.push('Please input a valid hex code for text color (i.e. FF5733)');
+        if (imgBlend !== '') {
+            if (imgBlend.length > 6 || imgBlend.length < 6) validators.push('Please input a valid hex code for overlay color (i.e. FF5733)');
+        }
+        if (textColor !== '') {
+            if (textColor.length > 6 || textColor.length < 6) validators.push('Please input a valid hex code for text color (i.e. FF5733)');
+        }
+        if (!textSize) validators.push('Please specify font size for the image text')
 
         return validators;
     }
@@ -79,7 +84,7 @@ export default function Form({ setParameters, imgUrl, setImgUrl, setImgDisplay }
                         value={imgUrl}
                         accept='.jpg, .jpeg, .png, .gif, .svg'
                         type='url'
-                        onChange={e => setImgUrl(e.target.value)}
+                        onChange={e => setImgUrl(e.target.value.trim())}
                     />
                 </div>
                 <div className={style.mainInputWrapper}>
@@ -88,7 +93,11 @@ export default function Form({ setParameters, imgUrl, setImgUrl, setImgDisplay }
                         htmlFor='imgBlend'
                     >
                         Image Overlay Color: <span className={style.mainSpan}>
-                            <a href='https://htmlcolorcodes.com/color-picker/'>Pick a Hex Code Here!</a>
+                            <a
+                                href='https://htmlcolorcodes.com/color-picker/'
+                                target='_blank'
+                                rel='noreferrer'
+                            >Pick a Hex Code Here!</a>
                         </span>
                     </label>
                     <input
@@ -97,7 +106,7 @@ export default function Form({ setParameters, imgUrl, setImgUrl, setImgDisplay }
                         placeholder='Hex # i.e. FF5733'
                         value={imgBlend}
                         type='text'
-                        onChange={e => setImgBlend(e.target.value)}
+                        onChange={e => setImgBlend(e.target.value.trim())}
                     />
                 </div>
                 <div className={style.mainInputWrapper}>
@@ -192,7 +201,11 @@ export default function Form({ setParameters, imgUrl, setImgUrl, setImgDisplay }
                         htmlFor='textColor'
                     >
                         Text Color: <span className={style.mainSpan}>
-                            <a href='https://htmlcolorcodes.com/color-picker/'>Pick a Hex Code Here!</a>
+                            <a
+                                href='https://htmlcolorcodes.com/color-picker/'
+                                target='_blank'
+                                rel='noreferrer'
+                            >Pick a Hex Code Here!</a>
                         </span>
                     </label>
                     <input
@@ -201,7 +214,7 @@ export default function Form({ setParameters, imgUrl, setImgUrl, setImgDisplay }
                         placeholder='i.e. FF5733'
                         value={textColor}
                         type='text'
-                        onChange={e => setTextColor(e.target.value)}
+                        onChange={e => setTextColor(e.target.value.trim())}
                     />
                 </div>
                 <div className={style.mainInputWrapper}>

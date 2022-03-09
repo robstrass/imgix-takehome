@@ -1,3 +1,16 @@
+.mainFormErrors {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.mainFormError {
+    font-size: 1rem;
+    color: red;
+}
+
 .mainForm {
     display: flex;
     flex-direction: column;
